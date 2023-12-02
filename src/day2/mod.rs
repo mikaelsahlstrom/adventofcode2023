@@ -69,5 +69,63 @@ pub fn part1()
 
 pub fn part2()
 {
+    let mut sum = 0;
+
+    if let Ok(lines) = utils::read_lines("src/day2/input")
+    {
+        for line in lines
+        {
+            if let Ok(l) = line
+            {
+                let game = l.split(":").collect::<Vec<&str>>();
+
+                let mut max_red_cubes = 0;
+                let mut max_green_cubes = 0;
+                let mut max_blue_cubes = 0;
+
+                let sets = game[1].split(";").collect::<Vec<&str>>();
+                for set in &sets
+                {
+                    let parts = set.split(",").collect::<Vec<&str>>();
+                    for part in parts
+                    {
+                        let part = part.trim().split(" ").collect::<Vec<&str>>();
+                        let amount = part[0].parse::<i32>().unwrap();
+                        let color = part[1].trim();
+
+                        match color
+                        {
+                            "red" =>
+                            {
+                                if max_red_cubes < amount
+                                {
+                                    max_red_cubes = amount;
+                                }
+                            },
+                            "green" =>
+                            {
+                                if max_green_cubes < amount
+                                {
+                                    max_green_cubes = amount;
+                                }
+                            },
+                            "blue" =>
+                            {
+                                if max_blue_cubes < amount
+                                {
+                                    max_blue_cubes = amount;
+                                }
+                            },
+                            &_ => ()
+                        }
+                    }
+                }
+
+                sum += max_red_cubes * max_green_cubes * max_blue_cubes;
+            }
+        }
+    }
+
+    println!("\tPart 2: {}", sum);
 
 }
