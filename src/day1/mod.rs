@@ -39,7 +39,7 @@ pub fn part1()
         }
     }
 
-    println!("Part 1: {}", sum);
+    println!("\tPart 1: {}", sum);
 }
 
 pub fn part2()
@@ -82,5 +82,5 @@ pub fn part2()
         }
     }
 
-    println!("Part 2: {}", sum);
+    println!("\tPart 2: {}", sum);
 }
